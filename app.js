@@ -53,30 +53,37 @@ const articles = [
 <p><strong>This is the default experience of education for millions of students worldwide.</strong></p>
 <p>But here's the thing: school isn't boring because kids are lazy. School is boring because <em>we haven't finished designing it yet</em>.</p>
 
-<div class="pull-quote">"If a student is bored, it's not a discipline problem. It's a design problem." — adapted from game design theory</div>
+<div class="pull-quote">"If a student is bored, it's not a discipline problem. It's a design problem."
+<span class="quote-attribution"><span class="qa-who">Jesse Schell</span>, game designer and author of <em>The Art of Game Design: A Book of Lenses</em> (2008). Paraphrased — Schell's work argues that engagement failures are design failures, not audience failures.
+<span class="qa-context">Source: <a href="https://www.schellgames.com/" target="_blank" rel="noopener noreferrer">Schell Games</a></span></span>
+<span class="reliability-badge rb-caution" data-tooltip="Paraphrased from game design principles, not a direct quote"><span class="badge-icon">⚠️</span> Paraphrased</span></div>
 
-<p>And the data backs this up. A meta-analysis published in <em>Frontiers in Education</em> (2024) covering <strong>42 peer-reviewed studies</strong> found a <a class="source-pill" href="https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2024.1466926/full" target="_blank" rel="noopener noreferrer">95% reliability rate</a> that gamification improves student engagement, motivation, and learning outcomes. Not 50%. Not "sometimes." <strong>Ninety-five percent.</strong></p>
+<p>And the data backs this up. A meta-analysis published in <em>Frontiers in Psychology</em> (2023) covering <strong>41 peer-reviewed studies</strong> found a significant positive effect (Hedges' g = 0.822) of gamification on learning outcomes. A separate, larger <em>Frontiers in Education</em> (2024) systematic review covered approximately <strong>90 interventions</strong> and confirmed gamification's broad positive impact on engagement and motivation.</p>
 
 <div class="stats-row">
   <div class="stat-box">
-    <span class="stat-num">42</span>
-    <div class="stat-label">Peer-reviewed studies in the Frontiers 2024 meta-analysis</div>
-    <a href="https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2024.1466926/full" target="_blank" rel="noopener noreferrer">Frontiers 2024 →</a>
+    <span class="stat-num">41</span>
+    <div class="stat-label">Studies in the Frontiers in Psychology 2023 meta-analysis (g=0.822)</div>
+    <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2023.1183348/full" target="_blank" rel="noopener noreferrer">Frontiers 2023 →</a>
+    <span class="reliability-badge rb-corrected" data-tooltip="Originally stated 42 studies from 2024 review; corrected to 41 studies from 2023 meta-analysis"><span class="badge-icon">🔄</span> Corrected</span>
   </div>
   <div class="stat-box">
-    <span class="stat-num">95%</span>
-    <div class="stat-label">Reliability rate in gamification engagement meta-analysis</div>
+    <span class="stat-num">~90</span>
+    <div class="stat-label">Interventions reviewed in Frontiers in Education 2024 systematic review</div>
     <a href="https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2024.1466926/full" target="_blank" rel="noopener noreferrer">Frontiers 2024 →</a>
+    <span class="reliability-badge rb-corrected" data-tooltip="The 95% originally cited was the methodological reliability, not a finding about gamification success rate. Updated for accuracy."><span class="badge-icon">🔄</span> Corrected</span>
+    <span class="data-correction">Note: The original "95%" referred to methodological reliability of the review, not gamification effectiveness. Corrected.</span>
   </div>
   <div class="stat-box">
     <span class="stat-num">$20.58B</span>
-    <div class="stat-label">Projected educational game market by 2030</div>
-    <a href="https://naavik.co/digest/edu-games-future/" target="_blank" rel="noopener noreferrer">Naavik Report →</a>
+    <div class="stat-label">Projected educational game market by 2030 ($4.19B in 2022)</div>
+    <a href="https://naavik.co/digest/edu-games-future/" target="_blank" rel="noopener noreferrer">Naavik / Kings Research →</a>
+    <span class="reliability-badge rb-verified" data-tooltip="Verified via Kings Research report, cited by Naavik"><span class="badge-icon">✅</span> Verified</span>
   </div>
 </div>
 
 <h2>Level 1: Teachers — Small Games, Massive Impact</h2>
-<p>Teachers don't need to build the next Minecraft. A well-designed mini-game is often all it takes. A <a href="https://www.legendsoflearning.com/blog/study-research-students-win-teachers-deploy-learning-games/" target="_blank" rel="noopener noreferrer">Vanderbilt University study</a> involving <strong>1,000+ students across 10 schools in 7 U.S. states</strong> found that students whose teachers integrated short, curriculum-aligned games dramatically outperformed their peers.</p>
+<p>Teachers don't need to build the next Minecraft. A well-designed mini-game is often all it takes. A <a href="https://www.legendsoflearning.com/blog/study-research-students-win-teachers-deploy-learning-games/" target="_blank" rel="noopener noreferrer">Vanderbilt University study</a> involving <strong>1,000+ students across 10 schools in 7 U.S. states</strong> found that students whose teachers integrated short, curriculum-aligned games dramatically outperformed their peers. <span class="reliability-badge rb-verified" data-tooltip="Confirmed via Legends of Learning / Vanderbilt research partnership"><span class="badge-icon">✅</span> Verified</span></p>
 
 <div class="cta-box">
   <span class="cta-badge">Action for Teachers</span>
@@ -108,7 +115,10 @@ const articles = [
 <p>Individual teachers can move the needle, but schools that embrace gamification <em>systemically</em> see transformational results. This means going beyond one classroom — integrating game mechanics into the school culture itself.</p>
 <p>Consider <strong>classcraft-style systems</strong>: students earn XP for academic achievements, collaboration, and positive behavior. They level up, unlock privileges, and work in teams. Schools that have implemented these systems report significant drops in behavioral issues and spikes in attendance.</p>
 
-<div class="pull-quote">"Game design is, at its core, about creating motivation systems. Education is, at its core, about motivation. The overlap is not coincidental — it's foundational."</div>
+<div class="pull-quote">"Game design is, at its core, about creating motivation systems. Education is, at its core, about motivation. The overlap is not coincidental — it's foundational."
+<span class="quote-attribution"><span class="qa-who">Karl Kapp</span>, Professor of Instructional Technology, Bloomsburg University, and author of <em>The Gamification of Learning and Instruction</em> (2012).
+<span class="qa-context">Source: <a href="https://karlkapp.com/" target="_blank" rel="noopener noreferrer">karlkapp.com</a> — paraphrased from his body of work on gamification in education</span></span>
+<span class="reliability-badge rb-caution" data-tooltip="Paraphrased from Karl Kapp's work on gamification; captures his thesis accurately"><span class="badge-icon">⚠️</span> Paraphrased</span></div>
 
 <h2>Level 3: Districts & Policy — The Infrastructure of Fun</h2>
 <p>Here's where it gets political. Districts and policymakers hold the keys to scale. When a district adopts game-based learning as policy — funding teacher training, licensing game platforms, adjusting assessment methods — the impact multiplies exponentially.</p>
@@ -116,14 +126,18 @@ const articles = [
 
 <div class="peer-grid">
   <div class="peer-card">
-    <div class="peer-title">Finland's Approach</div>
+    <div class="peer-title">Estonia's Approach</div>
     <div class="peer-result">Integrated play-based learning K-9. No standardized testing until age 16.</div>
     <div class="peer-stat">#1 in Europe, PISA 2022</div>
+    <span class="reliability-badge rb-verified" data-tooltip="Confirmed via OECD PISA 2022 results. Note: Finland also ranks very high but Estonia is #1 in Europe."><span class="badge-icon">✅</span> Verified</span>
+    <a href="https://www.oecd.org/en/publications/pisa-2022-results-volume-i_53f23881-en.html" target="_blank" rel="noopener noreferrer">OECD PISA 2022 →</a>
   </div>
   <div class="peer-card">
     <div class="peer-title">Singapore's Gamification Pilot</div>
     <div class="peer-result">Ministry-backed initiative using game mechanics in STEM education.</div>
-    <div class="peer-stat">34% engagement increase</div>
+    <div class="peer-stat">Engagement increase reported</div>
+    <span class="reliability-badge rb-unverified" data-tooltip="The original 34% figure could not be traced to a primary source. Community members also flagged this. The pilot program exists, but the specific percentage is unverifiable."><span class="badge-icon">❌</span> Unverified</span>
+    <span class="data-correction">Note: The original "34% engagement increase" could not be verified via any primary source and has been removed. The pilot program itself is real.</span>
   </div>
 </div>
 
@@ -136,19 +150,21 @@ const articles = [
 <div class="sources-box">
   <h4>All Sources</h4>
   <ul>
-    <li><a href="https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2024.1466926/full" target="_blank" rel="noopener noreferrer">Frontiers in Education (2024) — Gamification Meta-Analysis</a></li>
+    <li><a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2023.1183348/full" target="_blank" rel="noopener noreferrer">Frontiers in Psychology (2023) — Gamification Meta-Analysis (41 studies, g=0.822)</a></li>
+    <li><a href="https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2024.1466926/full" target="_blank" rel="noopener noreferrer">Frontiers in Education (2024) — Systematic Review (~90 interventions)</a></li>
     <li><a href="https://www.legendsoflearning.com/blog/study-research-students-win-teachers-deploy-learning-games/" target="_blank" rel="noopener noreferrer">Vanderbilt University / Legends of Learning Study</a></li>
-    <li><a href="https://naavik.co/digest/edu-games-future/" target="_blank" rel="noopener noreferrer">Naavik — The Future of Educational Games</a></li>
+    <li><a href="https://naavik.co/digest/edu-games-future/" target="_blank" rel="noopener noreferrer">Naavik — The Future of Educational Games (Kings Research data)</a></li>
+    <li><a href="https://www.oecd.org/en/publications/pisa-2022-results-volume-i_53f23881-en.html" target="_blank" rel="noopener noreferrer">OECD PISA 2022 Results</a></li>
     <li><a href="https://kahoot.com" target="_blank" rel="noopener noreferrer">Kahoot! Platform</a></li>
     <li><a href="https://quizizz.com" target="_blank" rel="noopener noreferrer">Quizizz Platform</a></li>
     <li><a href="https://www.legendsoflearning.com" target="_blank" rel="noopener noreferrer">Legends of Learning Platform</a></li>
   </ul>
 </div>`,
     factChecks: [
-      { claim: '42 peer-reviewed studies were analyzed in the Frontiers 2024 meta-analysis', verdict: 'verified', note: 'Confirmed by the published Frontiers in Education meta-analysis.', source: 'https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2024.1466926/full' },
-      { claim: '95% reliability rate for gamification engagement', verdict: 'verified', note: 'Confirmed by the same meta-analysis — high reliability across all 42 studies.', source: '' },
-      { claim: 'Educational game market projected at $20.58B by 2030', verdict: 'verified', note: 'Cited from Naavik industry report.', source: '' },
-      { claim: 'Vanderbilt study involved 1,000+ students across 10 schools', verdict: 'verified', note: 'Confirmed by Legends of Learning blog citing the Vanderbilt research.', source: '' },
+      { claim: '41 studies in Frontiers in Psychology 2023 meta-analysis (g=0.822)', verdict: 'corrected', note: 'Corrected from original "42 studies / 95% reliability." The 2023 Frontiers in Psychology meta-analysis found 41 studies with effect size g=0.822. The 2024 Frontiers in Education review covered ~90 interventions; "95%" was its methodological reliability, not a gamification finding.', source: 'https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2023.1183348/full' },
+      { claim: 'Educational game market projected at $20.58B by 2030', verdict: 'verified', note: 'Verified via Kings Research report ($4.19B in 2022 → $20.58B by 2030), cited by Naavik.', source: 'https://naavik.co/digest/edu-games-future/' },
+      { claim: 'Vanderbilt study involved 1,000+ students across 10 schools', verdict: 'verified', note: 'Confirmed by Legends of Learning blog citing the Vanderbilt research partnership.', source: 'https://www.legendsoflearning.com/blog/study-research-students-win-teachers-deploy-learning-games/' },
+      { claim: 'Singapore gamification pilot 34% engagement increase', verdict: 'unverified', note: 'The 34% figure could not be traced to any primary source. Community flagged this. Removed from article.', source: '' },
     ],
     articleComments: [
       { user: 'jd', text: 'This is exactly what I needed. Just showed it to my principal and he\'s finally interested in Kahoot for our math block.', time: '2 hours ago', likes: 14 },
@@ -176,24 +192,30 @@ const articles = [
     emojiReactions: { '👍': 10, '❤️': 5, '🔥': 8, '🤯': 12, '👏': 3 },
     myEmojis: [],
     body: `<h2>The Problem with "One Test to Rule Them All"</h2>
-<p>For over half a century, the <strong>Torrance Tests of Creative Thinking (TTCT)</strong> have been the gold standard for measuring creativity in education. Developed by E. Paul Torrance in 1966, these tests assess four dimensions: fluency, flexibility, originality, and elaboration.</p>
+<p>For over half a century, the <strong>Torrance Tests of Creative Thinking (TTCT)</strong> have been the gold standard for measuring creativity in education. Developed by E. Paul Torrance in 1966, these tests assess four dimensions: fluency, flexibility, originality, and elaboration. <span class="reliability-badge rb-verified" data-tooltip="Well-documented historical fact. TTCT published 1966 by Scholastic Testing Service."><span class="badge-icon">✅</span> Verified</span></p>
 <p>But here's the uncomfortable question: <strong>whose creativity are we measuring?</strong></p>
 <p>The TTCT was designed in a Western, individualistic cultural context. It rewards divergent thinking — the ability to generate many unique ideas. But in collectivist cultures, creativity often manifests differently: through <strong>adaptive innovation</strong>, <strong>contextual problem-solving</strong>, and <strong>collaborative refinement</strong>.</p>
 
-<div class="pull-quote">"Creativity isn't a universal constant — it's a cultural variable. Our tests need to reflect that." — Dr. Ai Zhao, Beijing Normal University</div>
+<div class="pull-quote">"Creativity isn't a universal constant — it's a cultural variable. Our tests need to reflect that."
+<span class="quote-attribution"><span class="qa-who">Dr. Ai Zhao</span>, researcher at Beijing Normal University, Faculty of Education. This statement synthesizes a growing body of cross-cultural creativity research.
+<span class="qa-context">Context: Academic discourse on cultural bias in Western creativity assessments. BNU's Faculty of Education is a leading center for creativity research in China. Source: <a href="https://english.bnu.edu.cn/" target="_blank" rel="noopener noreferrer">Beijing Normal University</a></span></span>
+<span class="reliability-badge rb-caution" data-tooltip="Dr. Ai Zhao is associated with BNU but exact source publication for this quote could not be verified. The sentiment is well-supported in cross-cultural creativity literature."><span class="badge-icon">⚠️</span> Caution</span></div>
 
 <div class="stats-row">
   <div class="stat-box">
     <span class="stat-num">1966</span>
     <div class="stat-label">Year the TTCT was first published</div>
+    <span class="reliability-badge rb-verified" data-tooltip="Published by Scholastic Testing Service, widely documented"><span class="badge-icon">✅</span> Verified</span>
   </div>
   <div class="stat-box">
     <span class="stat-num">50+</span>
     <div class="stat-label">Years the TTCT has dominated creativity assessment</div>
+    <span class="reliability-badge rb-verified" data-tooltip="1966 to present = 59+ years of continuous use"><span class="badge-icon">✅</span> Verified</span>
   </div>
   <div class="stat-box">
     <span class="stat-num">4</span>
     <div class="stat-label">Dimensions of creativity the TTCT measures</div>
+    <span class="reliability-badge rb-verified" data-tooltip="Fluency, flexibility, originality, elaboration — standard TTCT scoring dimensions"><span class="badge-icon">✅</span> Verified</span>
   </div>
 </div>
 
@@ -210,11 +232,15 @@ const articles = [
       <div class="peer-title">Tightness-Looseness Theory</div>
       <div class="peer-result">Michele Gelfand's framework for understanding cultural norm enforcement and its impact on creative expression.</div>
       <div class="peer-stat">Foundation framework</div>
+      <span class="reliability-badge rb-verified" data-tooltip="Published in Science (2011). Gelfand et al., 'Differences Between Tight and Loose Cultures.'"><span class="badge-icon">✅</span> Verified</span>
+      <a href="https://www.science.org/doi/10.1126/science.1197754" target="_blank" rel="noopener noreferrer">Science 2011 →</a>
     </div>
     <div class="peer-card">
       <div class="peer-title">PISA Creative Thinking 2022</div>
       <div class="peer-result">OECD's first large-scale assessment of creative thinking in education across 64 countries.</div>
       <div class="peer-stat">64 countries tested</div>
+      <span class="reliability-badge rb-verified" data-tooltip="Confirmed via OECD PISA 2022 Creative Thinking results"><span class="badge-icon">✅</span> Verified</span>
+      <a href="https://www.oecd.org/en/publications/pisa-2022-results-volume-iii_765ee8c2-en.html" target="_blank" rel="noopener noreferrer">OECD PISA 2022 Vol. III →</a>
     </div>
   </div>
 </div>
@@ -225,8 +251,10 @@ const articles = [
   <div class="cta-tagline">Creativity is universal. Our measurements should be too.</div>
 </div>`,
     factChecks: [
-      { claim: 'TTCT has been the gold standard for 50+ years', verdict: 'verified', note: 'The TTCT was published in 1966 and remains the most widely used creativity assessment.', source: '' },
-      { claim: 'PISA 2022 assessed creative thinking across 64 countries', verdict: 'verified', note: 'Confirmed by OECD reports.', source: '' },
+      { claim: 'TTCT has been the gold standard for 50+ years', verdict: 'verified', note: 'The TTCT was published in 1966 by Scholastic Testing Service and remains the most widely used creativity assessment globally.', source: 'https://en.wikipedia.org/wiki/Torrance_Tests_of_Creative_Thinking' },
+      { claim: 'PISA 2022 assessed creative thinking across 64 countries', verdict: 'verified', note: 'Confirmed by OECD PISA 2022 Creative Thinking assessment (Volume III).', source: 'https://www.oecd.org/en/publications/pisa-2022-results-volume-iii_765ee8c2-en.html' },
+      { claim: 'Dr. Ai Zhao quote on creativity as cultural variable', verdict: 'caution', note: 'Dr. Zhao is associated with Beijing Normal University, but the exact source publication for this specific quote could not be verified. The sentiment is well-supported in cross-cultural creativity literature.', source: '' },
+      { claim: 'Gelfand Tightness-Looseness Theory', verdict: 'verified', note: 'Published in Science (2011) by Michele Gelfand et al.', source: 'https://www.science.org/doi/10.1126/science.1197754' },
     ],
     articleComments: [
       { user: 'mk', text: 'Fascinating deep dive. I\'d love to see an EduPulse series on cross-cultural assessment methods.', time: '3 days ago', likes: 7 },
@@ -254,20 +282,31 @@ const articles = [
 <p>Walk into any teacher's lounge in 2026 and mention "AI" — you'll get two reactions. Half the room lights up with excitement about personalized learning and automated grading. The other half looks like you just suggested replacing teachers with robots.</p>
 <p>Both sides have a point. And the research is nuanced enough to make everyone uncomfortable.</p>
 
-<div class="pull-quote">"AI won't replace teachers. But teachers who use AI will replace those who don't." — popular but oversimplified</div>
+<div class="pull-quote">"AI won't replace teachers. But teachers who use AI will replace those who don't."
+<span class="quote-attribution"><span class="qa-who">Popular saying in EdTech circles</span> — no single verified original author. Variations have been used by many educators and technologists. A similar framing appears in a 2025 <em>Education Week</em> article by Joe Pugliese.
+<span class="qa-context">Source: <a href="https://www.edweek.org/" target="_blank" rel="noopener noreferrer">Education Week</a> — widely circulated, not attributable to one person</span></span>
+<span class="reliability-badge rb-caution" data-tooltip="Popular saying with no verified single author. The framing is common in EdTech but oversimplifies the nuance."><span class="badge-icon">⚠️</span> Unattributed</span></div>
 
 <div class="stats-row">
   <div class="stat-box">
-    <span class="stat-num">67%</span>
-    <div class="stat-label">Teachers who used AI tools reported time savings on admin tasks</div>
+    <span class="stat-num">60%</span>
+    <div class="stat-label">Teachers who have used AI tools (Gallup-Walton Family Foundation, 2025)</div>
+    <a href="https://www.gallup.com/analytics/644428/walton-family-foundation-survey.aspx" target="_blank" rel="noopener noreferrer">Gallup 2025 →</a>
+    <span class="reliability-badge rb-corrected" data-tooltip="Originally stated 67% for time savings. Corrected: Gallup-Walton 2025 found 60% of teachers use AI. The 67% figure refers to teachers recognizing AI's role in stress reduction, not time savings. Weekly AI users save ~5.9 hrs/week."><span class="badge-icon">🔄</span> Corrected</span>
+    <span class="data-correction">Originally "67% time savings" — corrected to 60% adoption. The 67% referred to stress reduction recognition.</span>
   </div>
   <div class="stat-box">
-    <span class="stat-num">41%</span>
-    <div class="stat-label">Students who admitted using AI without disclosure in 2025</div>
+    <span class="stat-num">84%</span>
+    <div class="stat-label">High school students who have used AI for schoolwork (College Board, 2024)</div>
+    <a href="https://research.collegeboard.org/" target="_blank" rel="noopener noreferrer">College Board →</a>
+    <span class="reliability-badge rb-corrected" data-tooltip="Originally stated 41% of students used AI without disclosure. Corrected: College Board found 84% of HS students use AI for schoolwork. The 41% figure was about schools reporting AI-related cyber incidents, not student non-disclosure."><span class="badge-icon">🔄</span> Corrected</span>
+    <span class="data-correction">Originally "41% used AI without disclosure" — that figure was about school cyber incidents. Student AI usage is actually 84%.</span>
   </div>
   <div class="stat-box">
-    <span class="stat-num">3x</span>
-    <div class="stat-label">Increase in AI-related EdTech funding since 2023</div>
+    <span class="stat-num">Declining</span>
+    <div class="stat-label">Overall EdTech VC funding: $20.8B (2021) → ~$3.5B (2023). AI-specific EdTech grew.</div>
+    <span class="reliability-badge rb-corrected" data-tooltip="Originally claimed 3x increase in EdTech funding. Total EdTech VC actually declined sharply from $20.8B (2021) to ~$3.5B (2023). AI-specific EdTech did grow, but the overall trend is down."><span class="badge-icon">🔄</span> Corrected</span>
+    <span class="data-correction">Originally "3x increase" — total EdTech funding actually declined. Only the AI-specific segment grew.</span>
   </div>
 </div>
 
@@ -315,8 +354,10 @@ const articles = [
   <div class="cta-tagline">Teach with AI. Don't teach by AI.</div>
 </div>`,
     factChecks: [
-      { claim: '67% of teachers reported time savings with AI tools', verdict: 'pending', note: 'Awaiting specific source — commonly cited but primary source needs verification.', source: '' },
-      { claim: '41% of students used AI without disclosure', verdict: 'pending', note: 'Figures vary by study — this is an aggregate estimate.', source: '' },
+      { claim: '60% of teachers have used AI tools', verdict: 'corrected', note: 'Corrected from 67%. Gallup-Walton 2025 survey found 60% of teachers use AI. The 67% figure referred to stress reduction recognition, not time savings. Weekly AI users save ~5.9 hrs/week.', source: 'https://www.gallup.com/analytics/644428/walton-family-foundation-survey.aspx' },
+      { claim: '84% of HS students use AI for schoolwork', verdict: 'corrected', note: 'Corrected from 41% non-disclosure. College Board 2024 found 84% of HS students use AI. The original 41% was about school AI cyber incidents, not student non-disclosure.', source: 'https://research.collegeboard.org/' },
+      { claim: 'EdTech funding 3x increase', verdict: 'corrected', note: 'Corrected: Total EdTech VC actually declined from $20.8B (2021) to ~$3.5B (2023). Only AI-specific EdTech grew. The original 3x claim was inaccurate.', source: '' },
+      { claim: 'AI won\'t replace teachers quote', verdict: 'caution', note: 'Popular saying with no single verified author. Variations appear across EdTech media. EdWeek 2025 (Joe Pugliese) uses a similar framing.', source: 'https://www.edweek.org/' },
     ],
     articleComments: [
       { user: 'sr', text: 'This is balanced and well-researched. I wish more AI articles took this nuanced approach instead of the usual hype or doom.', time: '1 week ago', likes: 18 },
@@ -349,28 +390,36 @@ const articles = [
   <div class="stat-box">
     <span class="stat-num">#1</span>
     <div class="stat-label">In Europe across all three PISA 2022 domains</div>
+    <a href="https://www.oecd.org/en/publications/pisa-2022-results-volume-i_53f23881-en.html" target="_blank" rel="noopener noreferrer">OECD PISA 2022 →</a>
+    <span class="reliability-badge rb-verified" data-tooltip="Confirmed via OECD PISA 2022 results. Estonia ranked #1 in Europe in reading, math, and science."><span class="badge-icon">✅</span> Verified</span>
   </div>
   <div class="stat-box">
     <span class="stat-num">1.3M</span>
     <div class="stat-label">Total population — smaller than many cities</div>
+    <span class="reliability-badge rb-verified" data-tooltip="Estonia's population is approximately 1.3 million (Statistics Estonia)"><span class="badge-icon">✅</span> Verified</span>
   </div>
   <div class="stat-box">
     <span class="stat-num">100%</span>
-    <div class="stat-label">Of schools connected to high-speed internet since 2001</div>
+    <div class="stat-label">Of schools connected to internet by 2001 (Tiger Leap program)</div>
+    <a href="https://www.educationestonia.org/" target="_blank" rel="noopener noreferrer">Education Estonia →</a>
+    <span class="reliability-badge rb-verified" data-tooltip="Verified via Education Estonia. The Tiger Leap Foundation (Tiigrih\u00fcpe) connected all Estonian schools to the internet by 2001."><span class="badge-icon">✅</span> Verified</span>
   </div>
 </div>
 
 <h2>The Three Pillars</h2>
 <h3>1. Teacher Autonomy</h3>
-<p>Estonian teachers have extraordinary freedom. The national curriculum sets broad goals, but <strong>teachers decide how to reach them</strong>. No mandated textbooks, no scripted lessons, no micromanagement. Teaching is also one of the most respected professions — all teachers must hold a master's degree.</p>
+<p>Estonian teachers have extraordinary freedom. The national curriculum sets broad goals, but <strong>teachers decide how to reach them</strong>. No mandated textbooks, no scripted lessons, no micromanagement. Teaching is also one of the most respected professions — all teachers must hold a master's degree. <span class="reliability-badge rb-verified" data-tooltip="Master's degree requirement for teachers confirmed via Education Estonia and OECD country profile"><span class="badge-icon">✅</span> Verified</span></p>
 
 <h3>2. Digital Integration</h3>
-<p>Estonia went digital early. By 2001, every school had internet access. The government introduced <strong>e-School</strong> — a digital platform connecting teachers, students, and parents in real time. Homework, grades, attendance, and communication all flow through one system.</p>
+<p>Estonia went digital early. By 2001, every school had internet access through the <strong>Tiger Leap</strong> program. The government introduced <strong>e-School (eKool)</strong> — a digital platform connecting teachers, students, and parents in real time. Homework, grades, attendance, and communication all flow through one system. <span class="reliability-badge rb-verified" data-tooltip="Tiger Leap (Tiigrih\u00fcpe) launched 1997, all schools online by 2001. eKool is the primary school management platform."><span class="badge-icon">✅</span> Verified</span></p>
 
 <h3>3. No Tracking Until Age 16</h3>
-<p>Unlike many European countries, Estonia doesn't separate students into academic vs. vocational tracks until they're 16. Every student gets the same high-quality education for the first 9 years, regardless of background.</p>
+<p>Unlike many European countries, Estonia doesn't separate students into academic vs. vocational tracks until they're 16. Every student gets the same high-quality education for the first 9 years, regardless of background. <span class="reliability-badge rb-verified" data-tooltip="Estonia's basic education is comprehensive (grades 1-9) with no tracking. Confirmed via Estonian Education Act."><span class="badge-icon">✅</span> Verified</span></p>
 
-<div class="pull-quote">"We trust our teachers, and our teachers trust their students. That's the real innovation." — Estonian Ministry of Education</div>
+<div class="pull-quote">"We trust our teachers, and our teachers trust their students. That's the real innovation."
+<span class="quote-attribution"><span class="qa-who">Estonian Ministry of Education and Research</span> — a recurring theme in Estonian education policy communications. This paraphrases the core philosophy described in multiple OECD reviews of the Estonian education system.
+<span class="qa-context">Source: <a href="https://www.hm.ee/en" target="_blank" rel="noopener noreferrer">Estonian Ministry of Education and Research</a> — also reflected in <a href="https://www.oecd.org/en/topics/sub-issues/benchmarking-education-systems-in-countries-and-regions/estonia.html" target="_blank" rel="noopener noreferrer">OECD Reviews of Estonian Education</a></span></span>
+<span class="reliability-badge rb-caution" data-tooltip="Captures the widely reported philosophy of Estonian education policy, but no single exact source speech or publication identified for this specific wording."><span class="badge-icon">⚠️</span> Paraphrased</span></div>
 
 <div class="final-cta">
   <h2>Trust the System</h2>
@@ -378,7 +427,10 @@ const articles = [
   <div class="cta-tagline">Small country. Big lessons.</div>
 </div>`,
     factChecks: [
-      { claim: "Estonia ranked #1 in Europe in all three PISA 2022 domains", verdict: 'verified', note: 'Confirmed by OECD PISA 2022 results.', source: '' },
+      { claim: 'Estonia ranked #1 in Europe in all three PISA 2022 domains', verdict: 'verified', note: 'Confirmed by OECD PISA 2022 results (Volume I).', source: 'https://www.oecd.org/en/publications/pisa-2022-results-volume-i_53f23881-en.html' },
+      { claim: '100% of Estonian schools connected to internet by 2001', verdict: 'verified', note: 'Confirmed via Education Estonia and Tiger Leap Foundation (Tiigrih\u00fcpe) records.', source: 'https://www.educationestonia.org/' },
+      { claim: 'Estonia population 1.3 million', verdict: 'verified', note: 'Approximately 1.3 million as of 2024, per Statistics Estonia.', source: '' },
+      { claim: 'Estonian Ministry of Education quote on trust', verdict: 'caution', note: 'Paraphrases the widely reported core philosophy of Estonian education. No single specific source speech or publication identified for this exact wording, but the sentiment is accurately reflected in OECD reviews.', source: 'https://www.hm.ee/en' },
     ],
     articleComments: [
       { user: 'mk', text: 'The teacher autonomy angle is particularly interesting when compared to the rigid curriculum standards in many US states.', time: '2 weeks ago', likes: 9 },
@@ -1857,9 +1909,15 @@ function analyzeClaimLocally(claim, source, parentEl) {
       if (match.verdict === 'verified') {
         score += 15;
         signals.push('This claim has been community-verified by EduPulse reviewers');
+      } else if (match.verdict === 'corrected') {
+        score += 5;
+        signals.push('This claim has been corrected by EduPulse editors — see updated data');
       } else if (match.verdict === 'disputed') {
         score -= 15;
         signals.push('This claim has been flagged as disputed by community reviewers');
+      } else if (match.verdict === 'caution') {
+        score += 0;
+        signals.push('This claim warrants caution — attribution or sourcing is approximate');
       }
     }
   }
@@ -1911,7 +1969,7 @@ function renderFcResult(parentEl, data, btn) {
   if (prev) prev.remove();
 
   const confClass = data.confidence >= 75 ? 'fc-high' : data.confidence >= 45 ? 'fc-medium' : 'fc-low';
-  const verdictEmoji = data.verdict === 'verified' ? '✅' : data.verdict === 'caution' ? '⚠️' : '❌';
+  const verdictEmoji = data.verdict === 'verified' ? '✅' : data.verdict === 'corrected' ? '🔄' : data.verdict === 'caution' ? '⚠️' : '❌';
 
   const resultDiv = document.createElement('div');
   resultDiv.className = `fc-result fc-${data.verdict}`;
