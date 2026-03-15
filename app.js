@@ -1694,6 +1694,231 @@ function showToast(message, type) {
 })();
 
 
+// ===== AI FACT-CHECK COMPANION (powered by Puter.js) =====
+const FC_CACHE = {}; // cache results so we don't re-query the same claim
+
+function injectFactCheckCompanions() {
+  const articleBody = document.querySelector('#articleContent .article-body');
+  if (!articleBody) return;
+
+  // Inject into stat boxes
+  articleBody.querySelectorAll('.stat-box').forEach((box, i) => {
+    if (box.querySelector('.fc-trigger')) return; // already injected
+    const num = box.querySelector('.stat-num');
+    const label = box.querySelector('.stat-label');
+    const sourceLink = box.querySelector('a');
+    if (!num) return;
+    const claim = `${num.textContent.trim()} — ${label ? label.textContent.trim() : ''}`;
+    const source = sourceLink ? sourceLink.href : '';
+    const btn = createFcTrigger(claim, source, box);
+    box.appendChild(btn);
+  });
+
+  // Inject into pull-quotes
+  articleBody.querySelectorAll('.pull-quote').forEach((quote, i) => {
+    if (quote.querySelector('.fc-trigger')) return;
+    const claim = quote.textContent.trim().replace(/^["']|["']$/g, '');
+    const btn = createFcTrigger(claim, '', quote);
+    quote.appendChild(btn);
+  });
+
+  // Inject into peer-cards (the stat line)
+  articleBody.querySelectorAll('.peer-card').forEach((card, i) => {
+    if (card.querySelector('.fc-trigger')) return;
+    const title = card.querySelector('.peer-title');
+    const stat = card.querySelector('.peer-stat');
+    const result = card.querySelector('.peer-result');
+    if (!stat && !result) return;
+    const claim = `${title ? title.textContent.trim() + ': ' : ''}${stat ? stat.textContent.trim() : ''} ${result ? result.textContent.trim() : ''}`;
+    const btn = createFcTrigger(claim, '', card);
+    card.appendChild(btn);
+  });
+}
+
+function createFcTrigger(claim, source, parentEl) {
+  const btn = document.createElement('button');
+  btn.className = 'fc-trigger';
+  btn.innerHTML = '<span class="fc-bot-icon">🔍</span> AI Fact Check';
+  btn.setAttribute('aria-label', 'AI fact-check this claim');
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    runFactCheck(btn, claim, source, parentEl);
+  });
+  return btn;
+}
+
+async function runFactCheck(btn, claim, source, parentEl) {
+  // Check cache
+  const cacheKey = claim.substring(0, 100);
+  if (FC_CACHE[cacheKey]) {
+    renderFcResult(parentEl, FC_CACHE[cacheKey], btn);
+    return;
+  }
+
+  // Set loading state
+  const originalHTML = btn.innerHTML;
+  btn.innerHTML = '<span class="fc-bot-icon">🔍</span> Checking...';
+  btn.classList.add('fc-loading');
+
+  // Remove any previous result in this container
+  const prev = parentEl.querySelector('.fc-result');
+  if (prev) prev.remove();
+
+  const prompt = `You are a fact-checking AI assistant for an education news platform. Analyze this claim from an article and provide a fact-check verdict.
+
+Claim: "${claim}"
+${source ? `Source cited: ${source}` : 'No source cited.'}
+
+Respond in this EXACT JSON format only, no other text:
+{
+  "verdict": "verified" or "caution" or "unverified",
+  "confidence": 0-100,
+  "summary": "One sentence verdict explanation",
+  "detail": "2-3 sentences with more context about why this verdict was reached. Mention any known sources that support or contradict the claim."
+}
+
+Verdict guide:
+- "verified": Claim is well-supported by known research or data
+- "caution": Claim is partially true, needs context, or has caveats
+- "unverified": Claim cannot be verified or appears inaccurate
+
+Be balanced and educational. This is for teachers and students.`;
+
+  try {
+    let resultData;
+    if (typeof puter !== 'undefined' && puter.ai) {
+      // Race: AI call vs 15s timeout fallback
+      const aiPromise = puter.ai.chat(prompt, { model: 'gpt-4o-mini' })
+        .then(response => {
+          const text = typeof response === 'string' ? response : (response.message?.content || response.toString());
+          return parseFcResponse(text);
+        });
+      const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 15000));
+      resultData = await Promise.race([aiPromise, timeoutPromise]);
+    } else {
+      // Fallback if Puter isn't loaded
+      resultData = getFallbackResult(claim);
+    }
+
+    FC_CACHE[cacheKey] = resultData;
+    renderFcResult(parentEl, resultData, btn);
+    addXP(15);
+    showToast('Fact check complete! +15 XP', 'success');
+  } catch (err) {
+    console.error('Fact check error:', err);
+    // Use smart fallback on error or timeout
+    const fallback = getFallbackResult(claim);
+    FC_CACHE[cacheKey] = fallback;
+    renderFcResult(parentEl, fallback, btn);
+    if (err.message === 'timeout') {
+      showToast('AI timed out — showing offline analysis', 'info');
+    }
+  }
+
+  btn.innerHTML = '<span class="fc-bot-icon">✅</span> Checked';
+  btn.classList.remove('fc-loading');
+}
+
+function parseFcResponse(text) {
+  try {
+    // Extract JSON from response (may be wrapped in markdown code block)
+    const jsonMatch = text.match(/\{[\s\S]*?\}/); 
+    if (jsonMatch) {
+      const parsed = JSON.parse(jsonMatch[0]);
+      return {
+        verdict: ['verified', 'caution', 'unverified'].includes(parsed.verdict) ? parsed.verdict : 'caution',
+        confidence: Math.max(0, Math.min(100, parseInt(parsed.confidence) || 65)),
+        summary: parsed.summary || 'Analysis complete.',
+        detail: parsed.detail || 'No additional details provided.'
+      };
+    }
+  } catch (e) { /* parse fail, use fallback */ }
+
+  return {
+    verdict: 'caution',
+    confidence: 50,
+    summary: 'Could not fully parse AI response.',
+    detail: text.substring(0, 200)
+  };
+}
+
+function getFallbackResult(claim) {
+  // Smart offline fallback based on common patterns
+  const lower = claim.toLowerCase();
+  if (lower.includes('frontiers') || lower.includes('vanderbilt') || lower.includes('pisa') || lower.includes('oecd')) {
+    return {
+      verdict: 'verified',
+      confidence: 85,
+      summary: 'This claim references a well-known academic source.',
+      detail: 'The cited institution or journal is a recognized authority in education research. The specific figures should be cross-referenced with the original publication for accuracy. AI verification is offline — connect to the internet for a full check.'
+    };
+  }
+  if (lower.includes('%') || lower.includes('billion') || lower.match(/\$[\d.]+/)) {
+    return {
+      verdict: 'caution',
+      confidence: 60,
+      summary: 'This statistical claim should be verified against the original source.',
+      detail: 'Numeric claims require careful verification. The figure may be accurate but context matters — check the methodology, sample size, and date of the original study. AI verification is offline — connect to the internet for a full check.'
+    };
+  }
+  return {
+    verdict: 'caution',
+    confidence: 55,
+    summary: 'This claim could not be fully verified offline.',
+    detail: 'For a complete fact-check, ensure you are connected to the internet so the AI can cross-reference multiple sources. You can also check the article\'s sources section for direct links.'
+  };
+}
+
+function renderFcResult(parentEl, data, btn) {
+  // Remove previous result
+  const prev = parentEl.querySelector('.fc-result');
+  if (prev) prev.remove();
+
+  const confClass = data.confidence >= 75 ? 'fc-high' : data.confidence >= 45 ? 'fc-medium' : 'fc-low';
+  const verdictEmoji = data.verdict === 'verified' ? '✅' : data.verdict === 'caution' ? '⚠️' : '❌';
+
+  const resultDiv = document.createElement('div');
+  resultDiv.className = `fc-result fc-${data.verdict}`;
+  resultDiv.innerHTML = `
+    <button class="fc-dismiss" onclick="this.parentElement.remove()" aria-label="Dismiss">✕</button>
+    <div class="fc-result-header">
+      <span>${verdictEmoji}</span>
+      <span>AI Fact Check</span>
+      <span class="fc-verdict-badge fc-v-${data.verdict}">${data.verdict}</span>
+    </div>
+    <div class="fc-result-body">
+      <strong>${data.summary}</strong><br>${data.detail}
+    </div>
+    <div class="fc-confidence-bar">
+      <span class="fc-confidence-label">Confidence</span>
+      <div class="fc-confidence-track">
+        <div class="fc-confidence-fill ${confClass}" style="width:0%"></div>
+      </div>
+      <span class="fc-confidence-label">${data.confidence}%</span>
+    </div>
+  `;
+
+  parentEl.appendChild(resultDiv);
+
+  // Animate confidence bar fill
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const fill = resultDiv.querySelector('.fc-confidence-fill');
+      if (fill) fill.style.width = data.confidence + '%';
+    });
+  });
+}
+
+// Hook into renderArticle — inject companions after article body is rendered
+const _origRenderArticle = renderArticle;
+renderArticle = function(articleId) {
+  _origRenderArticle(articleId);
+  // Inject fact-check buttons after a frame so DOM is ready
+  requestAnimationFrame(() => injectFactCheckCompanions());
+};
+
+
 // ===== INIT =====
 initParticles();
 updateXPBar();
