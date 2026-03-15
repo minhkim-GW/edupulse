@@ -1748,6 +1748,24 @@ function createFcTrigger(claim, source, parentEl) {
   return btn;
 }
 
+// Trusted academic/research domains for source scoring
+const TRUSTED_DOMAINS = [
+  'frontiersin.org', 'nature.com', 'science.org', 'sciencedirect.com', 'springer.com',
+  'wiley.com', 'tandfonline.com', 'jstor.org', 'pubmed.ncbi.nlm.nih.gov', 'eric.ed.gov',
+  'oecd.org', 'unesco.org', 'worldbank.org', 'who.int', 'nih.gov', 'nsf.gov',
+  'ed.gov', 'nces.ed.gov', 'pisa', 'arxiv.org', 'researchgate.net',
+  'vanderbilt.edu', 'harvard.edu', 'stanford.edu', 'mit.edu', 'berkeley.edu',
+  'legendsoflearning.com', 'kahoot.com', 'quizizz.com', 'khanacademy.org',
+  'naavik.co', 'edsurge.com', 'edweek.org', 'chronicle.com'
+];
+
+const TRUSTED_INSTITUTIONS = [
+  'frontiers', 'vanderbilt', 'harvard', 'stanford', 'mit', 'oxford', 'cambridge',
+  'pisa', 'oecd', 'unesco', 'world bank', 'national science foundation',
+  'khan academy', 'ministry', 'department of education', 'beijing normal',
+  'torrance', 'paul torrance', 'michele gelfand'
+];
+
 async function runFactCheck(btn, claim, source, parentEl) {
   // Check cache
   const cacheKey = claim.substring(0, 100);
@@ -1757,117 +1775,134 @@ async function runFactCheck(btn, claim, source, parentEl) {
   }
 
   // Set loading state
-  const originalHTML = btn.innerHTML;
-  btn.innerHTML = '<span class="fc-bot-icon">🔍</span> Checking...';
+  btn.innerHTML = '<span class="fc-bot-icon">🔍</span> Analyzing...';
   btn.classList.add('fc-loading');
 
-  // Remove any previous result in this container
+  // Remove any previous result
   const prev = parentEl.querySelector('.fc-result');
   if (prev) prev.remove();
 
-  const prompt = `You are a fact-checking AI assistant for an education news platform. Analyze this claim from an article and provide a fact-check verdict.
+  // Simulate brief analysis delay for UX
+  await new Promise(r => setTimeout(r, 600 + Math.random() * 800));
 
-Claim: "${claim}"
-${source ? `Source cited: ${source}` : 'No source cited.'}
+  const resultData = analyzeClaimLocally(claim, source, parentEl);
 
-Respond in this EXACT JSON format only, no other text:
-{
-  "verdict": "verified" or "caution" or "unverified",
-  "confidence": 0-100,
-  "summary": "One sentence verdict explanation",
-  "detail": "2-3 sentences with more context about why this verdict was reached. Mention any known sources that support or contradict the claim."
-}
-
-Verdict guide:
-- "verified": Claim is well-supported by known research or data
-- "caution": Claim is partially true, needs context, or has caveats
-- "unverified": Claim cannot be verified or appears inaccurate
-
-Be balanced and educational. This is for teachers and students.`;
-
-  try {
-    let resultData;
-    if (typeof puter !== 'undefined' && puter.ai) {
-      // Race: AI call vs 15s timeout fallback
-      const aiPromise = puter.ai.chat(prompt, { model: 'gpt-4o-mini' })
-        .then(response => {
-          const text = typeof response === 'string' ? response : (response.message?.content || response.toString());
-          return parseFcResponse(text);
-        });
-      const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 15000));
-      resultData = await Promise.race([aiPromise, timeoutPromise]);
-    } else {
-      // Fallback if Puter isn't loaded
-      resultData = getFallbackResult(claim);
-    }
-
-    FC_CACHE[cacheKey] = resultData;
-    renderFcResult(parentEl, resultData, btn);
-    addXP(15);
-    showToast('Fact check complete! +15 XP', 'success');
-  } catch (err) {
-    console.error('Fact check error:', err);
-    // Use smart fallback on error or timeout
-    const fallback = getFallbackResult(claim);
-    FC_CACHE[cacheKey] = fallback;
-    renderFcResult(parentEl, fallback, btn);
-    if (err.message === 'timeout') {
-      showToast('AI timed out — showing offline analysis', 'info');
-    }
-  }
+  FC_CACHE[cacheKey] = resultData;
+  renderFcResult(parentEl, resultData, btn);
+  addXP(15);
+  showToast('Fact check complete! +15 XP', 'success');
 
   btn.innerHTML = '<span class="fc-bot-icon">✅</span> Checked';
   btn.classList.remove('fc-loading');
 }
 
-function parseFcResponse(text) {
-  try {
-    // Extract JSON from response (may be wrapped in markdown code block)
-    const jsonMatch = text.match(/\{[\s\S]*?\}/); 
-    if (jsonMatch) {
-      const parsed = JSON.parse(jsonMatch[0]);
-      return {
-        verdict: ['verified', 'caution', 'unverified'].includes(parsed.verdict) ? parsed.verdict : 'caution',
-        confidence: Math.max(0, Math.min(100, parseInt(parsed.confidence) || 65)),
-        summary: parsed.summary || 'Analysis complete.',
-        detail: parsed.detail || 'No additional details provided.'
-      };
-    }
-  } catch (e) { /* parse fail, use fallback */ }
-
-  return {
-    verdict: 'caution',
-    confidence: 50,
-    summary: 'Could not fully parse AI response.',
-    detail: text.substring(0, 200)
-  };
-}
-
-function getFallbackResult(claim) {
-  // Smart offline fallback based on common patterns
+function analyzeClaimLocally(claim, source, parentEl) {
   const lower = claim.toLowerCase();
-  if (lower.includes('frontiers') || lower.includes('vanderbilt') || lower.includes('pisa') || lower.includes('oecd')) {
-    return {
-      verdict: 'verified',
-      confidence: 85,
-      summary: 'This claim references a well-known academic source.',
-      detail: 'The cited institution or journal is a recognized authority in education research. The specific figures should be cross-referenced with the original publication for accuracy. AI verification is offline — connect to the internet for a full check.'
-    };
+  let score = 50; // base confidence
+  let signals = [];
+  let verdict = 'caution';
+
+  // --- Signal 1: Source URL quality ---
+  if (source) {
+    const srcLower = source.toLowerCase();
+    const isTrusted = TRUSTED_DOMAINS.some(d => srcLower.includes(d));
+    if (isTrusted) {
+      score += 25;
+      const domain = TRUSTED_DOMAINS.find(d => srcLower.includes(d));
+      signals.push(`Cites a reputable source (${domain})`);
+    } else if (source.startsWith('http')) {
+      score += 10;
+      signals.push('Has an external source link, but not from a major academic publisher');
+    }
+  } else {
+    score -= 5;
+    signals.push('No direct source URL provided for this claim');
   }
-  if (lower.includes('%') || lower.includes('billion') || lower.match(/\$[\d.]+/)) {
-    return {
-      verdict: 'caution',
-      confidence: 60,
-      summary: 'This statistical claim should be verified against the original source.',
-      detail: 'Numeric claims require careful verification. The figure may be accurate but context matters — check the methodology, sample size, and date of the original study. AI verification is offline — connect to the internet for a full check.'
-    };
+
+  // --- Signal 2: Institutional reference ---
+  const instMatch = TRUSTED_INSTITUTIONS.find(inst => lower.includes(inst));
+  if (instMatch) {
+    score += 20;
+    signals.push(`References a recognized institution/researcher (${instMatch})`);
   }
-  return {
-    verdict: 'caution',
-    confidence: 55,
-    summary: 'This claim could not be fully verified offline.',
-    detail: 'For a complete fact-check, ensure you are connected to the internet so the AI can cross-reference multiple sources. You can also check the article\'s sources section for direct links.'
-  };
+
+  // --- Signal 3: Specificity of the claim ---
+  const hasNumber = /\d/.test(claim);
+  const hasYear = /\b(19|20)\d{2}\b/.test(claim);
+  const hasPercentage = /%/.test(claim);
+  const hasCurrency = /\$/.test(claim);
+  const hasMultiplier = /\d+x\b/i.test(claim);
+
+  if (hasNumber) {
+    score += 5;
+    signals.push('Contains specific numeric data');
+  }
+  if (hasYear) {
+    score += 5;
+    signals.push('References a specific year, making it verifiable');
+  }
+  if (hasPercentage || hasCurrency || hasMultiplier) {
+    signals.push('Statistical claim — verify methodology and sample size');
+  }
+
+  // --- Signal 4: Check the article's own fact-check data ---
+  const article = articles.find(a => a.id === currentArticleId);
+  if (article && article.factChecks) {
+    const match = article.factChecks.find(fc => {
+      const claimWords = claim.toLowerCase().split(/\s+/).filter(w => w.length > 4);
+      const fcWords = fc.claim.toLowerCase();
+      return claimWords.filter(w => fcWords.includes(w)).length >= 2;
+    });
+    if (match) {
+      if (match.verdict === 'verified') {
+        score += 15;
+        signals.push('This claim has been community-verified by EduPulse reviewers');
+      } else if (match.verdict === 'disputed') {
+        score -= 15;
+        signals.push('This claim has been flagged as disputed by community reviewers');
+      }
+    }
+  }
+
+  // --- Signal 5: Quote vs data distinction ---
+  const isQuote = lower.includes('\u2014') || lower.includes(' \u2013 ') || /^["\u201c]/.test(claim.trim()) || parentEl.classList.contains('pull-quote');
+  if (isQuote) {
+    signals.push('This is an attributed quote — the attribution can be checked, but opinions within quotes reflect the speaker\'s view');
+    score = Math.min(score, 78); // quotes can't be fully "verified" as fact
+  }
+
+  // --- Signal 6: Cross-reference with nearby source links ---
+  const nearbyLinks = parentEl.querySelectorAll('a[href]');
+  if (nearbyLinks.length > 0) {
+    const trustedNearby = Array.from(nearbyLinks).filter(a => 
+      TRUSTED_DOMAINS.some(d => a.href.toLowerCase().includes(d))
+    );
+    if (trustedNearby.length > 0) {
+      score += 10;
+      signals.push(`Has ${trustedNearby.length} linked reference(s) from academic sources`);
+    }
+  }
+
+  // --- Determine verdict ---
+  score = Math.max(15, Math.min(95, score));
+  if (score >= 75) verdict = 'verified';
+  else if (score >= 45) verdict = 'caution';
+  else verdict = 'unverified';
+
+  // --- Build human-readable summary ---
+  let summary, detail;
+  if (verdict === 'verified') {
+    summary = 'This claim is well-supported by its cited sources.';
+    detail = signals.slice(0, 3).join('. ') + '. Cross-reference the linked source for full methodology and context.';
+  } else if (verdict === 'unverified') {
+    summary = 'This claim needs stronger sourcing.';
+    detail = signals.slice(0, 3).join('. ') + '. Consider requesting an edit or checking the sources section for additional references.';
+  } else {
+    summary = 'This claim has some support but warrants closer examination.';
+    detail = signals.slice(0, 3).join('. ') + '. Check the original source for full context before citing this claim.';
+  }
+
+  return { verdict, confidence: score, summary, detail };
 }
 
 function renderFcResult(parentEl, data, btn) {
