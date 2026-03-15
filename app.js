@@ -54,9 +54,9 @@ const articles = [
 <p>But here's the thing: school isn't boring because kids are lazy. School is boring because <em>we haven't finished designing it yet</em>.</p>
 
 <div class="pull-quote">"If a student is bored, it's not a discipline problem. It's a design problem."
-<span class="quote-attribution"><span class="qa-who">Jesse Schell</span>, game designer and author of <em>The Art of Game Design: A Book of Lenses</em> (2008). Paraphrased — Schell's work argues that engagement failures are design failures, not audience failures.
-<span class="qa-context">Source: <a href="https://www.schellgames.com/" target="_blank" rel="noopener noreferrer">Schell Games</a></span></span>
-<span class="reliability-badge rb-caution" data-tooltip="Paraphrased from game design principles, not a direct quote"><span class="badge-icon">⚠️</span> Paraphrased</span></div>
+<span class="quote-attribution"><span class="qa-who">Minh Kim</span>, author of this article. Inspired by game design theory — particularly the principle that engagement is a design responsibility, not an audience obligation.
+<span class="qa-context">Article: <em>Make School Fun Again</em>, EduPulse, Mar 8, 2026</span></span>
+<span class="reliability-badge rb-verified" data-tooltip="Original quote by the article author, Minh Kim"><span class="badge-icon">✅</span> Article Author</span></div>
 
 <p>And the data backs this up. A meta-analysis published in <em>Frontiers in Psychology</em> (2023) covering <strong>41 peer-reviewed studies</strong> found a significant positive effect (Hedges' g = 0.822) of gamification on learning outcomes. A separate, larger <em>Frontiers in Education</em> (2024) systematic review covered approximately <strong>90 interventions</strong> and confirmed gamification's broad positive impact on engagement and motivation.</p>
 
@@ -116,9 +116,9 @@ const articles = [
 <p>Consider <strong>classcraft-style systems</strong>: students earn XP for academic achievements, collaboration, and positive behavior. They level up, unlock privileges, and work in teams. Schools that have implemented these systems report significant drops in behavioral issues and spikes in attendance.</p>
 
 <div class="pull-quote">"Game design is, at its core, about creating motivation systems. Education is, at its core, about motivation. The overlap is not coincidental — it's foundational."
-<span class="quote-attribution"><span class="qa-who">Karl Kapp</span>, Professor of Instructional Technology, Bloomsburg University, and author of <em>The Gamification of Learning and Instruction</em> (2012).
-<span class="qa-context">Source: <a href="https://karlkapp.com/" target="_blank" rel="noopener noreferrer">karlkapp.com</a> — paraphrased from his body of work on gamification in education</span></span>
-<span class="reliability-badge rb-caution" data-tooltip="Paraphrased from Karl Kapp's work on gamification; captures his thesis accurately"><span class="badge-icon">⚠️</span> Paraphrased</span></div>
+<span class="quote-attribution"><span class="qa-who">Minh Kim</span>, author of this article. This observation draws on the work of Karl Kapp (<em>The Gamification of Learning and Instruction</em>, 2012) who extensively documented the parallels between game mechanics and learning motivation.
+<span class="qa-context">Article: <em>Make School Fun Again</em>, EduPulse, Mar 8, 2026</span></span>
+<span class="reliability-badge rb-verified" data-tooltip="Original quote by the article author, Minh Kim. Influenced by Karl Kapp's research."><span class="badge-icon">✅</span> Article Author</span></div>
 
 <h2>Level 3: Districts & Policy — The Infrastructure of Fun</h2>
 <p>Here's where it gets political. Districts and policymakers hold the keys to scale. When a district adopts game-based learning as policy — funding teacher training, licensing game platforms, adjusting assessment methods — the impact multiplies exponentially.</p>
@@ -197,9 +197,9 @@ const articles = [
 <p>The TTCT was designed in a Western, individualistic cultural context. It rewards divergent thinking — the ability to generate many unique ideas. But in collectivist cultures, creativity often manifests differently: through <strong>adaptive innovation</strong>, <strong>contextual problem-solving</strong>, and <strong>collaborative refinement</strong>.</p>
 
 <div class="pull-quote">"Creativity isn't a universal constant — it's a cultural variable. Our tests need to reflect that."
-<span class="quote-attribution"><span class="qa-who">Dr. Ai Zhao</span>, researcher at Beijing Normal University, Faculty of Education. This statement synthesizes a growing body of cross-cultural creativity research.
-<span class="qa-context">Context: Academic discourse on cultural bias in Western creativity assessments. BNU's Faculty of Education is a leading center for creativity research in China. Source: <a href="https://english.bnu.edu.cn/" target="_blank" rel="noopener noreferrer">Beijing Normal University</a></span></span>
-<span class="reliability-badge rb-caution" data-tooltip="Dr. Ai Zhao is associated with BNU but exact source publication for this quote could not be verified. The sentiment is well-supported in cross-cultural creativity literature."><span class="badge-icon">⚠️</span> Caution</span></div>
+<span class="quote-attribution"><span class="qa-who">Aiko Tanaka</span>, author of this article. This observation synthesizes a growing body of cross-cultural creativity research, including work from Beijing Normal University and the broader academic discourse on cultural bias in Western creativity assessments.
+<span class="qa-context">Article: <em>Is Your Creativity Test Actually Measuring Creativity?</em>, EduPulse, Mar 5, 2026</span></span>
+<span class="reliability-badge rb-verified" data-tooltip="Original quote by the article author, Aiko Tanaka"><span class="badge-icon">✅</span> Article Author</span></div>
 
 <div class="stats-row">
   <div class="stat-box">
@@ -283,9 +283,9 @@ const articles = [
 <p>Both sides have a point. And the research is nuanced enough to make everyone uncomfortable.</p>
 
 <div class="pull-quote">"AI won't replace teachers. But teachers who use AI will replace those who don't."
-<span class="quote-attribution"><span class="qa-who">Popular saying in EdTech circles</span> — no single verified original author. Variations have been used by many educators and technologists. A similar framing appears in a 2025 <em>Education Week</em> article by Joe Pugliese.
-<span class="qa-context">Source: <a href="https://www.edweek.org/" target="_blank" rel="noopener noreferrer">Education Week</a> — widely circulated, not attributable to one person</span></span>
-<span class="reliability-badge rb-caution" data-tooltip="Popular saying with no verified single author. The framing is common in EdTech but oversimplifies the nuance."><span class="badge-icon">⚠️</span> Unattributed</span></div>
+<span class="quote-attribution"><span class="qa-who">James Doe</span>, author of this article, citing a widely circulated saying in EdTech circles. No single original author has been verified. Variations appear across education media, including a similar framing in a 2025 <a href="https://www.edweek.org/" target="_blank" rel="noopener noreferrer">Education Week</a> article by Joe Pugliese.
+<span class="qa-context">Article: <em>AI in the Classroom: Revolution or Distraction?</em>, EduPulse, Mar 2, 2026</span></span>
+<span class="reliability-badge rb-caution" data-tooltip="Widely circulated saying with no verified original author. Cited by the article author as a common EdTech framing."><span class="badge-icon">⚠️</span> Common Saying</span></div>
 
 <div class="stats-row">
   <div class="stat-box">
@@ -417,9 +417,9 @@ const articles = [
 <p>Unlike many European countries, Estonia doesn't separate students into academic vs. vocational tracks until they're 16. Every student gets the same high-quality education for the first 9 years, regardless of background. <span class="reliability-badge rb-verified" data-tooltip="Estonia's basic education is comprehensive (grades 1-9) with no tracking. Confirmed via Estonian Education Act."><span class="badge-icon">✅</span> Verified</span></p>
 
 <div class="pull-quote">"We trust our teachers, and our teachers trust their students. That's the real innovation."
-<span class="quote-attribution"><span class="qa-who">Estonian Ministry of Education and Research</span> — a recurring theme in Estonian education policy communications. This paraphrases the core philosophy described in multiple OECD reviews of the Estonian education system.
-<span class="qa-context">Source: <a href="https://www.hm.ee/en" target="_blank" rel="noopener noreferrer">Estonian Ministry of Education and Research</a> — also reflected in <a href="https://www.oecd.org/en/topics/sub-issues/benchmarking-education-systems-in-countries-and-regions/estonia.html" target="_blank" rel="noopener noreferrer">OECD Reviews of Estonian Education</a></span></span>
-<span class="reliability-badge rb-caution" data-tooltip="Captures the widely reported philosophy of Estonian education policy, but no single exact source speech or publication identified for this specific wording."><span class="badge-icon">⚠️</span> Paraphrased</span></div>
+<span class="quote-attribution"><span class="qa-who">Li Peng</span>, author of this article, summarizing the core philosophy of Estonian education policy as described in multiple <a href="https://www.oecd.org/en/topics/sub-issues/benchmarking-education-systems-in-countries-and-regions/estonia.html" target="_blank" rel="noopener noreferrer">OECD reviews</a> and communications from the <a href="https://www.hm.ee/en" target="_blank" rel="noopener noreferrer">Estonian Ministry of Education and Research</a>.
+<span class="qa-context">Article: <em>Estonia's Education Miracle</em>, EduPulse, Feb 28, 2026</span></span>
+<span class="reliability-badge rb-verified" data-tooltip="Original quote by the article author, Li Peng, summarizing Estonian education philosophy from OECD reviews"><span class="badge-icon">✅</span> Article Author</span></div>
 
 <div class="final-cta">
   <h2>Trust the System</h2>
