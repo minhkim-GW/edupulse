@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduPulse — Social Education News</title>
+<meta name="description" content="Interactive education news platform where teachers discuss, fact-check, and share research-backed articles. Powered by AI.">
+<meta property="og:title" content="EduPulse — Social Education News">
+<meta property="og:description" content="Where educators share, discuss, and fact-check educational research. AI-powered.">
+<meta property="og:type" content="website">
+
+<!-- Facebook SDK -->
+<meta property="fb:app_id" content="DEMO_APP_ID">
+
+<link rel="stylesheet" href="./base.css">
+<link rel="stylesheet" href="./style.css">
+
+<!-- Canvas Confetti -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<!-- GSAP for fun animations -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+
+</head>
+<body>
+
+<!-- Facebook SDK (async) -->
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    if (typeof FB !== 'undefined') {
+      FB.init({ appId: 'DEMO_APP_ID', cookie: true, xfbml: true, version: 'v19.0' });
+    }
+  };
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    js.async = true; js.defer = true;
+    if (fjs) fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="app-shell" id="app">
+  <!-- ANIMATED BACKGROUND PARTICLES -->
+  <canvas id="particleCanvas" class="particle-canvas"></canvas>
+
+  <!-- HEADER -->
+  <header class="app-header">
+    <a class="logo" onclick="navigateTo('feed')" aria-label="EduPulse Home">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="var(--color-primary)"/>
+            <stop offset="100%" stop-color="#38bdf8"/>
+          </linearGradient>
+        </defs>
+        <rect width="36" height="36" rx="10" fill="url(#logoGrad)"/>
+        <path d="M9 11h18M9 18h14M9 25h9" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="27" cy="25" r="4.5" fill="white" opacity="0.95"/>
+        <path d="M25.5 25l1.5 1.5 3-3" stroke="var(--color-primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="logo-text">EduPulse</span>
+      <span class="logo-badge">AI</span>
+    </a>
+
+    <div class="search-bar">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="search" placeholder="Search articles, topics, authors..." id="searchInput" oninput="handleSearch(this.value)" aria-label="Search articles">
+    </div>
+
+    <div class="header-actions">
+      <button class="btn btn-primary btn-glow" onclick="navigateTo('create')" aria-label="Write new article">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        <span class="hide-mobile">Write</span>
+      </button>
+
+      <!-- Facebook Login -->
+      <button class="btn btn-fb" onclick="fbLogin()" id="fbLoginBtn" aria-label="Login with Facebook">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        <span class="hide-mobile" id="fbLoginText">Login</span>
+      </button>
+
+      <button class="btn-icon" data-theme-toggle aria-label="Switch theme">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+
+      <div class="user-menu">
+        <button class="btn-icon" onclick="toggleUserMenu()" style="position:relative" aria-label="User menu">
+          <div class="avatar" style="background:var(--color-primary);width:32px;height:32px;font-size:var(--text-sm)" id="userAvatar">MK</div>
+          <span class="notif-badge" id="notifBadge">3</span>
+        </button>
+        <div class="user-menu-dropdown hidden" id="userMenu">
+          <button onclick="showToast('Profile settings coming soon','info')">Profile</button>
+          <button onclick="showToast('My articles view coming soon','info')">My Articles</button>
+          <button onclick="showToast('Bookmarks coming soon','info')">Bookmarks</button>
+          <button onclick="navigateTo('feed');showToast('Streak: 7 days! Keep it up! 🔥','success')">My Streak 🔥</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- XP BAR -->
+  <div class="xp-bar-container">
+    <div class="xp-bar">
+      <div class="xp-fill" id="xpFill" style="width:65%"></div>
+    </div>
+    <span class="xp-label" id="xpLabel">Level 7 — 650/1000 XP</span>
+  </div>
+
+  <!-- MAIN -->
+  <main class="main-content">
+    <nav class="tabs-nav" id="mainTabs">
+      <button class="tab-btn active" onclick="switchTab('feed')" data-tab="feed">
+        <span class="tab-icon">🏠</span> Feed
+      </button>
+      <button class="tab-btn" onclick="switchTab('trending')" data-tab="trending">
+        <span class="tab-icon">🔥</span> Trending
+      </button>
+      <button class="tab-btn" onclick="switchTab('discuss')" data-tab="discuss">
+        <span class="tab-icon">💬</span> Discussions
+      </button>
+      <button class="tab-btn" onclick="switchTab('factchecks')" data-tab="factchecks">
+        <span class="tab-icon">✅</span> Fact Checks
+      </button>
+    </nav>
+
+    <div id="feedView"><div class="feed-grid" id="feedGrid"></div></div>
+    <div id="trendingView" class="hidden"><div class="feed-grid" id="trendingGrid"></div></div>
+    <div id="discussView" class="hidden"></div>
+    <div id="factchecksView" class="hidden"></div>
+    <div id="articleView" class="hidden"><div class="article-view" id="articleContent"></div></div>
+    <div id="createView" class="hidden"><div class="create-view" id="createContent"></div></div>
+  </main>
+
+  <footer class="app-footer">
+    <p>EduPulse — Where educators share, discuss, and fact-check educational research.</p>
+    <p style="margin-top:var(--space-2)">
+      <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+    </p>
+  </footer>
+</div>
+
+<!-- AI FLOATING ASSISTANT -->
+<div class="ai-fab" id="aiFab" onclick="toggleAiPanel()">
+  <div class="ai-fab-icon">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1.27A7 7 0 0 1 7.27 19H6a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z"/>
+      <circle cx="9" cy="13" r="1" fill="currentColor"/>
+      <circle cx="15" cy="13" r="1" fill="currentColor"/>
+      <path d="M10 17a2 2 0 0 0 4 0"/>
+    </svg>
+  </div>
+  <span class="ai-fab-label">AI</span>
+  <div class="ai-fab-pulse"></div>
+</div>
+
+<!-- AI PANEL -->
+<div class="ai-panel hidden" id="aiPanel">
+  <div class="ai-panel-header">
+    <div style="display:flex;align-items:center;gap:var(--space-2)">
+      <span class="ai-sparkle">✨</span>
+      <span style="font-weight:700">AI Writing Assistant</span>
+    </div>
+    <button class="btn-icon" onclick="toggleAiPanel()" aria-label="Close AI panel">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="ai-panel-body">
+    <div class="ai-quick-actions">
+      <button class="ai-quick-btn" onclick="aiQuickAction('comment')">💬 Draft Comment</button>
+      <button class="ai-quick-btn" onclick="aiQuickAction('article')">📝 Write Article</button>
+      <button class="ai-quick-btn" onclick="aiQuickAction('title')">🎯 Generate Titles</button>
+      <button class="ai-quick-btn" onclick="aiQuickAction('improve')">✨ Improve Text</button>
+    </div>
+    <div class="ai-chat-area" id="aiChatArea">
+      <div class="ai-message ai-bot">
+        <div class="ai-message-avatar">🤖</div>
+        <div class="ai-message-text">Hey! I'm your AI writing assistant. I can help you write comments, draft articles with interactive HTML, generate titles, or improve your text. What would you like to do?</div>
+      </div>
+    </div>
+    <div class="ai-input-area">
+      <textarea id="aiInput" placeholder="Tell me what to write..." rows="2"></textarea>
+      <button class="btn btn-primary" onclick="sendAiMessage()" id="aiSendBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+<div id="modalContainer"></div>
+
+<script src="./app.js"></script>
+</body>
+</html>
